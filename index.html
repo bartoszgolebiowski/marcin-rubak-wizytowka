@@ -348,7 +348,6 @@
                   name="auctionLink"
                   placeholder="np. https://otomoto.pl/oferta/..."
                 />
-                <div class="error-message" id="auctionLinkError"></div>
               </div>
 
               <div class="form-group">
@@ -468,18 +467,6 @@
           isValid = false;
         }
 
-        // Walidacja linku do ogłoszenia
-        const auctionLink = document.getElementById("auctionLink").value.trim();
-        const urlRegex =
-          /^(https?:\/\/)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_\+.~#?&//=]*)$/;
-        if (!auctionLink) {
-          errorMessages.auctionLink = "Proszę podać link do ogłoszenia";
-          isValid = false;
-        } else if (!urlRegex.test(auctionLink)) {
-          errorMessages.auctionLink = "Proszę podać prawidłowy adres URL";
-          isValid = false;
-        }
-
         // Wyświetlenie komunikatów o błędach
         document.getElementById("firstNameError").textContent =
           errorMessages.firstName;
@@ -487,11 +474,6 @@
           errorMessages.lastName;
         document.getElementById("phoneNumberError").textContent =
           errorMessages.phoneNumber;
-        document.getElementById("auctionLinkError").textContent =
-          errorMessages.auctionLink;
-        document.getElementById("packageError").textContent =
-          errorMessages.package;
-
         return isValid;
       }
 
@@ -588,7 +570,6 @@ Link: ${data.auctionLink ?? "Do ustalenia"}
         document.getElementById("lastNameError").textContent = "";
         document.getElementById("phoneNumberError").textContent = "";
         document.getElementById("auctionLinkError").textContent = "";
-        document.getElementById("packageError").textContent = "";
       }
     </script>
   </body>
