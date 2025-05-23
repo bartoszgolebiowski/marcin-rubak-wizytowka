@@ -640,7 +640,7 @@ ${data.message ? `Info: ${data.message}` : ""}
         // z Twojego konta Google Ads. Format to zazwyczaj 'AW-ACCOUNT_ID/LABEL_ID'.
 
         // Funkcja pomocnicza do wysyłania zdarzenia konwersji gtag
-        function trackGtagEvent(conversionLabel, eventType) {
+        function trackGtagEvent(eventType) {
           if (typeof gtag === "function") {
             gtag("event", "conversion", {
               send_to: "AW-17103103347/CBSsCMDe0cwaEPPKsts_",
@@ -649,9 +649,7 @@ ${data.message ? `Info: ${data.message}` : ""}
               event_label: eventType, // np. 'phone_call_click_header'
             });
 
-            console.log(
-              `Gtag conversion event sent. Label: ${conversionLabel}, Type: ${eventType}`
-            );
+            console.log(`Gtag conversion event sent. Type: ${eventType}`);
           } else {
             console.warn(
               "gtag function is not defined. Google Ads conversion not tracked."
@@ -666,7 +664,7 @@ ${data.message ? `Info: ${data.message}` : ""}
         );
         phoneLinks.forEach((link) => {
           link.addEventListener("click", function () {
-            trackGtagEvent(GTAG_CONVERSION_LABEL_PHONE, "phone_call_click");
+            trackGtagEvent("phone_call_click");
           });
         });
 
@@ -683,10 +681,7 @@ ${data.message ? `Info: ${data.message}` : ""}
             // (jak pokazano w zakomentowanym bloku w sendSms()).
             //
             // Poniższe wywołanie realizuje prośbę o dodanie listenera, który nie modyfikuje istniejących funkcji.
-            trackGtagEvent(
-              GTAG_CONVERSION_LABEL_SMS_FORM,
-              "sms_form_submit_attempt"
-            );
+            trackGtagEvent("sms_form_submit_attempt");
           });
         }
       });
