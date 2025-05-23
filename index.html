@@ -30,7 +30,6 @@
         dataLayer.push(arguments);
       }
       gtag("js", new Date());
-
       gtag("config", "AW-17103103347");
     </script>
   </head>
@@ -59,7 +58,11 @@
           </ul>
         </nav>
         <div class="contact-info">
-          <a href="tel:+48503438806" class="phone-btn">
+          <a
+            href="tel:+48503438806"
+            class="phone-btn"
+            data-conversion-type="phone_call"
+          >
             <i class="fas fa-phone"></i> +48 503 438 806
           </a>
         </div>
@@ -74,7 +77,12 @@
           <p>Profesjonalna pomoc w zakupie samochodu używanego</p>
           <div class="hero-btns">
             <a href="#kontakt" class="btn btn-primary">Umów się z ekspertem</a>
-            <a href="tel:+48503438806" class="btn btn-outline">Zadzwoń teraz</a>
+            <a
+              href="tel:+48503438806"
+              class="btn btn-outline"
+              data-conversion-type="phone_call"
+              >Zadzwoń teraz</a
+            >
           </div>
           <div class="expert-info">
             <i class="fas fa-map-marker-alt"></i> KIELCE, OKOLICE + 200KM
@@ -236,7 +244,12 @@
                 dany samochód
               </li>
             </ul>
-            <a href="tel:+48503438806" class="btn btn-package">Wybierz pakiet</a>
+            <a
+              href="tel:+48503438806"
+              class="btn btn-package"
+              data-conversion-type="phone_call"
+              >Wybierz pakiet</a
+            >
           </div>
 
           <div class="package-card package-featured">
@@ -257,7 +270,12 @@
                 amortyzatory
               </li>
             </ul>
-            <a href="tel:+48503438806" class="btn btn-package">Wybierz pakiet</a>
+            <a
+              href="tel:+48503438806"
+              class="btn btn-package"
+              data-conversion-type="phone_call"
+              >Wybierz pakiet</a
+            >
           </div>
 
           <div class="package-card">
@@ -276,7 +294,10 @@
               <li><i class="fas fa-check"></i> Indywidualne doradztwo</li>
               <li><i class="fas fa-check"></i> Pełne wsparcie przy zakupie</li>
             </ul>
-            <a href="tel:+48503438806" class="btn btn-package"
+            <a
+              href="tel:+48503438806"
+              class="btn btn-package"
+              data-conversion-type="phone_call"
               >Wybierz pakiet</a
             >
           </div>
@@ -293,7 +314,9 @@
             <h3>Skontaktuj się z ekspertem</h3>
             <div class="contact-item">
               <i class="fas fa-phone"></i>
-              <a href="tel:+48503438806">+48 503 438 806</a>
+              <a href="tel:+48503438806" data-conversion-type="phone_call"
+                >+48 503 438 806</a
+              >
             </div>
             <div class="contact-item">
               <i class="fas fa-map-marker-alt"></i>
@@ -360,6 +383,7 @@
                   type="button"
                   class="btn btn-primary btn-contact"
                   onclick="sendEmail()"
+                  data-conversion-type="email_form_submit"
                 >
                   <i class="fas fa-envelope"></i> Wyślij mailem
                 </button>
@@ -367,10 +391,17 @@
                   type="button"
                   class="btn btn-secondary btn-contact"
                   onclick="sendSms()"
+                  data-conversion-type="sms_form_submit"
                 >
                   <i class="fas fa-sms"></i> Wyślij SMSem
                 </button>
               </div>
+              <!-- Dodany element do wyświetlania komunikatów o sukcesie formularza -->
+              <div
+                id="formSuccess"
+                class="form-success-message"
+                style="margin-top: 15px; color: green; font-weight: bold"
+              ></div>
             </form>
           </div>
         </div>
@@ -402,7 +433,9 @@
             <h4>Kontakt</h4>
             <p>
               <i class="fas fa-phone"></i>
-              <a href="tel:+48503438806">+48 503 438 806</a>
+              <a href="tel:+48503438806" data-conversion-type="phone_call"
+                >+48 503 438 806</a
+              >
             </p>
             <p><i class="fas fa-map-marker-alt"></i> KIELCE, OKOLICE + 200KM</p>
           </div>
@@ -437,9 +470,14 @@
           firstName: "",
           lastName: "",
           phoneNumber: "",
-          auctionLink: "",
-          package: "",
         };
+
+        // Czyszczenie poprzednich komunikatów o błędach i sukcesie
+        document.getElementById("firstNameError").textContent = "";
+        document.getElementById("lastNameError").textContent = "";
+        document.getElementById("phoneNumberError").textContent = "";
+        const formSuccessEl = document.getElementById("formSuccess");
+        if (formSuccessEl) formSuccessEl.textContent = "";
 
         // Walidacja imienia
         const firstName = document.getElementById("firstName").value.trim();
@@ -485,22 +523,11 @@
         const auctionLink = document.getElementById("auctionLink").value.trim();
         const message = document.getElementById("message").value.trim();
 
-        // Pobranie wybranego pakietu
-        let selectedPackage = "";
-        const packageRadios = document.getElementsByName("package");
-        for (const radio of packageRadios) {
-          if (radio.checked) {
-            selectedPackage = radio.value;
-            break;
-          }
-        }
-
         return {
           firstName,
           lastName,
           phoneNumber,
           auctionLink,
-          selectedPackage,
           message,
         };
       }
@@ -516,20 +543,34 @@
         const body = `
 Imię i nazwisko: ${data.firstName} ${data.lastName}
 Numer telefonu: ${data.phoneNumber}
-Link do ogłoszenia: ${data.auctionLink}
+Link do ogłoszenia: ${data.auctionLink || "Nie podano"}
 
 Dodatkowe informacje:
 ${data.message}
             `;
+
+        if (typeof gtag === "function") {
+          gtag("event", "conversion", {
+            send_to: "AW-17103103347/CBSsCMDe0cwaEPPKsts_",
+            value: 20.0,
+            currency: "PLN",
+            event_label: "email_form_submit",
+          });
+
+          console.log("Gtag conversion (successful email form) sent.");
+        }
 
         window.location.href = `mailto:marcin.rubak@vp.pl?subject=${encodeURIComponent(
           subject
         )}&body=${encodeURIComponent(body)}`;
 
         // Wyświetlenie komunikatu o powodzeniu
-        document.getElementById("formSuccess").textContent =
-          'Kliknij "Wyślij" w swoim kliencie pocztowym, aby wysłać wiadomość.';
-        clearFormFields();
+        const formSuccessEl = document.getElementById("formSuccess");
+        if (formSuccessEl) {
+          formSuccessEl.textContent =
+            'Przygotowano wiadomość e-mail. Kliknij "Wyślij" w swoim programie pocztowym.';
+        }
+        clearFormFields(false); // Czyść pola, ale nie komunikat sukcesu
       }
 
       // Funkcja wysyłająca SMS
@@ -543,34 +584,112 @@ ${data.message}
 Sprawdzenie auta:
 ${data.firstName} ${data.lastName}
 Tel: ${data.phoneNumber}
-Link: ${data.auctionLink ?? "Do ustalenia"}
+Link: ${data.auctionLink || "Do ustalenia"}
+${data.message ? `Info: ${data.message}` : ""}
             `;
+        // UWAGA: Jeśli chcesz śledzić konwersję gtag TYLKO po udanej walidacji,
+        // odkomentuj poniższy blok i usuń/zakomentuj listener dla 'sms_form_submit' w kodzie gtag poniżej.
+
+        if (typeof gtag === "function") {
+          gtag("event", "conversion", {
+            send_to: "AW-17103103347/CBSsCMDe0cwaEPPKsts_",
+            value: 20.0,
+            currency: "PLN",
+            event_label: "sms_form_submit_attempt",
+          });
+
+          console.log("Gtag conversion (successful sms form) sent.");
+        }
 
         window.location.href = `sms:503438806?body=${encodeURIComponent(
           smsBody
         )}`;
 
         // Wyświetlenie komunikatu o powodzeniu
-        document.getElementById("formSuccess").textContent =
-          'Wiadomość SMS została przygotowana. Kliknij "Wyślij" w aplikacji SMS.';
-        clearFormFields();
+        const formSuccessEl = document.getElementById("formSuccess");
+        if (formSuccessEl) {
+          formSuccessEl.textContent =
+            'Przygotowano wiadomość SMS. Kliknij "Wyślij" w aplikacji SMS.';
+        }
+        clearFormFields(false); // Czyść pola, ale nie komunikat sukcesu
       }
 
       // Czyszczenie pól formularza po wysłaniu
-      function clearFormFields() {
+      function clearFormFields(clearSuccessMessage = true) {
         document.getElementById("firstName").value = "";
         document.getElementById("lastName").value = "";
         document.getElementById("phoneNumber").value = "";
         document.getElementById("auctionLink").value = "";
         document.getElementById("message").value = "";
-        document.getElementById("standard").checked = true;
 
         // Czyszczenie komunikatów o błędach
         document.getElementById("firstNameError").textContent = "";
         document.getElementById("lastNameError").textContent = "";
         document.getElementById("phoneNumberError").textContent = "";
-        document.getElementById("auctionLinkError").textContent = "";
+
+        if (clearSuccessMessage) {
+          const formSuccessEl = document.getElementById("formSuccess");
+          if (formSuccessEl) formSuccessEl.textContent = "";
+        }
       }
+
+      // --- Google Ads Conversion Tracking ---
+      document.addEventListener("DOMContentLoaded", function () {
+        // --- Konfiguracja Etykiet Konwersji Google Ads ---
+        // WAŻNE: Zastąp poniższe placeholdery rzeczywistymi identyfikatorami etykiet konwersji
+        // z Twojego konta Google Ads. Format to zazwyczaj 'AW-ACCOUNT_ID/LABEL_ID'.
+
+        // Funkcja pomocnicza do wysyłania zdarzenia konwersji gtag
+        function trackGtagEvent(conversionLabel, eventType) {
+          if (typeof gtag === "function") {
+            gtag("event", "conversion", {
+              send_to: "AW-17103103347/CBSsCMDe0cwaEPPKsts_",
+              value: 20.0, // Możesz dostosować wartość
+              currency: "PLN",
+              event_label: eventType, // np. 'phone_call_click_header'
+            });
+
+            console.log(
+              `Gtag conversion event sent. Label: ${conversionLabel}, Type: ${eventType}`
+            );
+          } else {
+            console.warn(
+              "gtag function is not defined. Google Ads conversion not tracked."
+            );
+          }
+        }
+
+        // Dodawanie listenerów do linków telefonicznych
+        // Używamy atrybutu data-conversion-type="phone_call" dodanego w HTML
+        const phoneLinks = document.querySelectorAll(
+          'a[data-conversion-type="phone_call"]'
+        );
+        phoneLinks.forEach((link) => {
+          link.addEventListener("click", function () {
+            trackGtagEvent(GTAG_CONVERSION_LABEL_PHONE, "phone_call_click");
+          });
+        });
+
+        // Dodawanie listenera do przycisku wysyłania SMS z formularza
+        const smsFormButton = document.querySelector(
+          'button[data-conversion-type="sms_form_submit"]'
+        );
+        if (smsFormButton) {
+          smsFormButton.addEventListener("click", function () {
+            // UWAGA: Podobna sytuacja jak przy przycisku email. Ten listener zostanie wywołany
+            // niezależnie od wyniku walidacji w funkcji sendSms().
+            //
+            // REKOMENDACJA: Przenieść trackGtagEvent do wnętrza funkcji sendSms() po walidacji
+            // (jak pokazano w zakomentowanym bloku w sendSms()).
+            //
+            // Poniższe wywołanie realizuje prośbę o dodanie listenera, który nie modyfikuje istniejących funkcji.
+            trackGtagEvent(
+              GTAG_CONVERSION_LABEL_SMS_FORM,
+              "sms_form_submit_attempt"
+            );
+          });
+        }
+      });
     </script>
   </body>
 </html>
