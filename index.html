@@ -3,6 +3,10 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="canonical" href="https://kupspokojnie.pl/" />
+    <link rel="icon" href="favicon.ico" sizes="any" />
+    <link rel="icon" href="favicon.svg" type="image/svg+xml" />
+    <link rel="apple-touch-icon" href="apple-touch-icon.png" />
     <meta
       name="description"
       content="AUTO MOTO EXPERT – profesjonalne sprawdzanie samochodów przed zakupem w Kielcach i okolicach. Zasięg do 200km. Pakiety od 400 PLN. Zadzwoń: +48 503 438 806"
@@ -17,6 +21,7 @@
     <!-- Open Graph -->
     <meta property="og:type" content="website" />
     <meta property="og:locale" content="pl_PL" />
+    <meta property="og:url" content="https://kupspokojnie.pl/" />
     <meta property="og:title" content="AUTO MOTO EXPERT – Sprawdź auto przed zakupem | Kielce" />
     <meta property="og:description" content="Profesjonalne sprawdzanie samochodów przed zakupem. Zasięg do 200km od Kielc. Pakiety od 400 PLN. Zadzwoń: +48 503 438 806" />
     <meta property="og:image" content="hero.jpg" />
@@ -251,7 +256,7 @@
       }
 
       .btn-contact {
-        width: 48%;
+        flex: 1;
         margin: 0;
         display: flex;
         justify-content: center;
@@ -260,6 +265,17 @@
 
       .btn-contact i {
         margin-right: 8px;
+      }
+
+      .btn-call {
+        background-color: #27ae60;
+        color: var(--white);
+      }
+
+      .btn-call:hover {
+        background-color: #219a52;
+        transform: translateY(-2px);
+        box-shadow: var(--shadow-md);
       }
 
       /* Header */
@@ -817,6 +833,121 @@
         gap: var(--spacing-sm);
       }
 
+      /* Sekcja podglądu raportu */
+      .report-preview {
+        background: linear-gradient(135deg, #1a252f 0%, var(--primary) 100%);
+        color: var(--white);
+        padding: var(--spacing-lg) 0;
+      }
+
+      .report-preview .section-title {
+        color: var(--white);
+        text-align: center;
+        margin-bottom: var(--spacing-md);
+      }
+
+      .report-preview-cols {
+        display: flex;
+        align-items: stretch;
+        gap: var(--spacing-lg);
+      }
+
+      .report-checklist-col {
+        flex: 1;
+      }
+
+      .report-checklist-col p {
+        color: rgba(255,255,255,.75);
+        font-size: 1rem;
+        margin-bottom: var(--spacing-sm);
+      }
+
+      .report-checklist {
+        list-style: none;
+        margin: 0;
+      }
+
+      .report-checklist li {
+        display: flex;
+        align-items: center;
+        gap: .7rem;
+        padding: .5rem 0;
+        border-bottom: 1px solid rgba(255,255,255,.08);
+        font-size: .95rem;
+        color: rgba(255,255,255,.85);
+      }
+
+      .report-checklist li:last-child { border-bottom: none; }
+
+      .report-checklist li i {
+        color: #2ecc71;
+        font-size: 1rem;
+        flex-shrink: 0;
+      }
+
+      .report-cta-col {
+        flex: 0 0 320px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .report-cta-card {
+        width: 100%;
+        background: rgba(255,255,255,.06);
+        border: 1px solid rgba(255,255,255,.15);
+        border-radius: var(--radius-lg);
+        padding: var(--spacing-md);
+        text-align: center;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: var(--spacing-sm);
+      }
+
+      .report-cta-icon {
+        width: 72px; height: 72px;
+        background: var(--secondary);
+        border-radius: var(--radius-md);
+        display: flex; align-items: center; justify-content: center;
+        font-size: 2rem;
+        color: var(--white);
+        box-shadow: 0 8px 24px rgba(231,76,60,.4);
+      }
+
+      .report-cta-card h3 {
+        color: var(--white);
+        font-size: 1.15rem;
+        margin: 0;
+      }
+
+      .report-cta-card p {
+        color: rgba(255,255,255,.55);
+        font-size: .85rem;
+        margin: 0;
+      }
+
+      .btn-report {
+        display: inline-block;
+        background-color: var(--secondary);
+        color: var(--white);
+        padding: .85rem 1.6rem;
+        border-radius: var(--radius-md);
+        font-family: "Montserrat", sans-serif;
+        font-weight: 600;
+        font-size: 1rem;
+        text-decoration: none;
+        transition: all .25s;
+        width: 100%;
+        text-align: center;
+      }
+
+      .btn-report:hover {
+        background-color: #c0392b;
+        transform: translateY(-2px);
+        box-shadow: var(--shadow-md);
+      }
+
       /* Footer */
       .footer {
         background-color: var(--primary);
@@ -1065,6 +1196,16 @@
         .footer-content {
           flex-direction: column;
         }
+
+        .report-preview-cols {
+          flex-direction: column;
+          gap: var(--spacing-md);
+        }
+
+        .report-cta-col {
+          flex: none;
+          width: 100%;
+        }
       }
     </style>
   </head>
@@ -1089,6 +1230,7 @@
             <li><a href="#korzysci">Korzyści</a></li>
             <li><a href="#uslugi">Usługi</a></li>
             <li><a href="#pakiety">Pakiety</a></li>
+            <li><a href="raport-przykladowy.html">Przykładowy raport</a></li>
             <li><a href="#kontakt">Kontakt</a></li>
           </ul>
         </nav>
@@ -1129,6 +1271,41 @@
             <span>9</span>
             <small>lat doświadczenia</small>
           </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Sekcja podgląd raportu -->
+    <section class="report-preview">
+      <div class="container">
+        <h2 class="section-title">Efektem inspekcji jest szczegółowy raport</h2>
+        <div class="report-preview-cols">
+
+          <div class="report-checklist-col">
+            <p>Po każdej inspekcji otrzymujesz gotowy dokument z wynikami wszystkich badań – coś konkretnego w ręku, nie tylko opinia ustna.</p>
+            <ul class="report-checklist">
+              <li><i class="fas fa-check-circle"></i> Pomiary grubości lakieru na dziesiątkach punktów</li>
+              <li><i class="fas fa-check-circle"></i> Weryfikacja szyb i ogumienia</li>
+              <li><i class="fas fa-check-circle"></i> Pełny checklist elektryki i wyposażenia wnętrza</li>
+              <li><i class="fas fa-check-circle"></i> Ocena komory silnika i bagażnika</li>
+              <li><i class="fas fa-check-circle"></i> Wyniki jazdy próbnej</li>
+              <li><i class="fas fa-check-circle"></i> Kontrola podwozia (pakiet PREMIUM)</li>
+              <li><i class="fas fa-check-circle"></i> Diagnostyka komputerowa OBD</li>
+              <li><i class="fas fa-check-circle"></i> Werdykt eksperta – kupić czy nie?</li>
+            </ul>
+          </div>
+
+          <div class="report-cta-col">
+            <div class="report-cta-card">
+              <div class="report-cta-icon"><i class="fas fa-file-alt"></i></div>
+              <h3>Przykładowy raport</h3>
+              <p>Audi A4 B9 &middot; 2018 &middot; 95&nbsp;500&nbsp;km</p>
+              <a href="raport-przykladowy.html" class="btn btn-report">
+                <i class="fas fa-eye"></i> Kliknij i sprawdź
+              </a>
+            </div>
+          </div>
+
         </div>
       </div>
     </section>
@@ -1347,12 +1524,14 @@
         <div class="contact-container">
           <div class="contact-info-box">
             <h3>Skontaktuj się z ekspertem</h3>
-            <div class="contact-item">
-              <i class="fas fa-phone"></i>
-              <a href="tel:+48503438806" data-conversion-type="phone_call"
-                >+48 503 438 806</a
-              >
-            </div>
+            <a
+              href="tel:+48503438806"
+              class="btn btn-call btn-full"
+              data-conversion-type="phone_call"
+              style="margin-bottom: var(--spacing-sm);"
+            >
+              <i class="fas fa-phone"></i> +48 503 438 806
+            </a>
             <div class="contact-item">
               <i class="fas fa-map-marker-alt"></i>
               <p>KIELCE, OKOLICE + 200KM</p>
@@ -1430,6 +1609,13 @@
                 >
                   <i class="fas fa-sms"></i> Wyślij SMSem
                 </button>
+                <a
+                  href="tel:+48503438806"
+                  class="btn btn-call btn-contact"
+                  data-conversion-type="phone_call"
+                >
+                  <i class="fas fa-phone"></i> Jeszcze nie wiesz? Zadzwoń!
+                </a>
               </div>
               <!-- Dodany element do wyświetlania komunikatów o sukcesie formularza -->
               <div
@@ -1461,6 +1647,7 @@
               <li><a href="#korzysci">Korzyści</a></li>
               <li><a href="#uslugi">Usługi</a></li>
               <li><a href="#pakiety">Pakiety</a></li>
+              <li><a href="raport-przykladowy.html">Przykładowy raport</a></li>
               <li><a href="#kontakt">Kontakt</a></li>
             </ul>
           </div>

@@ -1,0 +1,846 @@
+<!DOCTYPE html>
+<html lang="pl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Przykładowy raport przedzakupowy AUTO MOTO EXPERT – Audi A4 B9 2018. Zobacz jak wygląda profesjonalna inspekcja samochodu przed zakupem."
+    />
+    <meta name="robots" content="index, follow" />
+    <link rel="icon" href="favicon.svg" type="image/svg+xml" />
+    <title>Przykładowy raport – AUTO MOTO EXPERT</title>
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Roboto:wght@300;400;500&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+      :root {
+        --primary: #2c3e50;
+        --secondary: #e74c3c;
+        --accent: #3498db;
+        --light: #ecf0f1;
+        --dark: #1a252f;
+        --white: #ffffff;
+        --gray: #95a5a6;
+        --success: #27ae60;
+        --warning: #f39c12;
+        --error: #e74c3c;
+        --shadow-sm: 0 2px 4px rgba(0,0,0,.1);
+        --shadow-md: 0 4px 8px rgba(0,0,0,.12);
+        --shadow-lg: 0 10px 25px rgba(0,0,0,.15);
+        --radius-sm: 4px;
+        --radius-md: 8px;
+        --radius-lg: 16px;
+        --spacing-xs: .5rem;
+        --spacing-sm: 1rem;
+        --spacing-md: 2rem;
+        --spacing-lg: 4rem;
+      }
+
+      html { font-size: 16px; scroll-behavior: smooth; }
+      body { font-family: "Roboto", sans-serif; line-height: 1.6; color: var(--primary); background: #f5f6fa; }
+
+      .container { width: 100%; max-width: 1100px; margin: 0 auto; padding: 0 var(--spacing-sm); }
+
+      h1, h2, h3, h4 { font-family: "Montserrat", sans-serif; font-weight: 700; line-height: 1.2; }
+
+      /* ── HEADER ── */
+      .header {
+        background-color: var(--primary);
+        color: var(--white);
+        padding: var(--spacing-sm) 0;
+        position: sticky;
+        top: 0;
+        z-index: 1000;
+        box-shadow: var(--shadow-sm);
+      }
+      .header-container {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+      .logo p {
+        font-family: "Montserrat", sans-serif;
+        font-weight: 700;
+        font-size: 1.5rem;
+        margin: 0;
+        color: var(--white);
+        text-decoration: none;
+      }
+      .highlight { color: var(--secondary); }
+      .nav-links {
+        display: flex;
+        list-style: none;
+        gap: 2rem;
+      }
+      .nav-links a {
+        color: var(--white);
+        text-decoration: none;
+        font-weight: 500;
+        font-size: 1rem;
+        transition: color .3s;
+      }
+      .nav-links a:hover,
+      .nav-links a.active { color: var(--secondary); }
+      .phone-btn {
+        display: flex;
+        align-items: center;
+        color: var(--white);
+        text-decoration: none;
+        padding: .5rem 1rem;
+        border-radius: var(--radius-md);
+        background-color: var(--secondary);
+        transition: all .3s;
+        font-weight: 500;
+        white-space: nowrap;
+      }
+      .phone-btn:hover { background-color: #c0392b; transform: translateY(-2px); }
+      .phone-btn i { margin-right: .5rem; }
+      .mobile-menu-btn {
+        display: none;
+        flex-direction: column;
+        justify-content: space-between;
+        width: 30px; height: 21px;
+        background: transparent;
+        border: none;
+        cursor: pointer;
+      }
+      .mobile-menu-btn span {
+        display: block;
+        width: 100%; height: 3px;
+        background-color: var(--white);
+        border-radius: 3px;
+        transition: all .3s;
+      }
+      @media (max-width: 768px) {
+        .mobile-menu-btn { display: flex; }
+        .nav-links {
+          position: absolute;
+          top: 100%; left: 0;
+          width: 100%;
+          flex-direction: column;
+          background-color: var(--primary);
+          display: none;
+          padding: var(--spacing-md);
+          box-shadow: var(--shadow-md);
+          gap: 0;
+        }
+        .nav-links.active { display: flex; }
+        .nav-links li { margin-bottom: var(--spacing-sm); }
+        .header-contact { display: none; }
+      }
+
+      /* ── PAGE HERO ── */
+      .page-hero {
+        background: linear-gradient(135deg, var(--primary) 0%, #3d5166 100%);
+        color: var(--white);
+        padding: var(--spacing-lg) 0 var(--spacing-md);
+        text-align: center;
+      }
+      .page-hero h1 { font-size: 2rem; margin-bottom: .5rem; }
+      .page-hero p { font-size: 1.05rem; color: rgba(255,255,255,.8); max-width: 600px; margin: 0 auto; }
+      .page-hero .car-badge {
+        display: inline-block;
+        margin-top: var(--spacing-sm);
+        background: rgba(255,255,255,.1);
+        border: 1px solid rgba(255,255,255,.2);
+        border-radius: var(--radius-lg);
+        padding: .4rem 1.2rem;
+        font-size: .9rem;
+      }
+      .page-hero .car-badge i { color: var(--secondary); margin-right: .4rem; }
+
+      /* ── SECTIONS ── */
+      .section { padding: var(--spacing-lg) 0; }
+      .section:nth-child(even) { background: var(--white); }
+      .section-header {
+        display: flex;
+        align-items: flex-start;
+        gap: 1rem;
+        margin-bottom: var(--spacing-md);
+        padding-bottom: var(--spacing-sm);
+        border-bottom: 3px solid var(--secondary);
+      }
+      .section-icon {
+        flex-shrink: 0;
+        width: 48px; height: 48px;
+        background: var(--secondary);
+        border-radius: var(--radius-md);
+        display: flex; align-items: center; justify-content: center;
+        color: var(--white);
+        font-size: 1.3rem;
+      }
+      .section-header h2 { font-size: 1.4rem; margin-bottom: .2rem; }
+      .section-header p { font-size: .9rem; color: var(--gray); margin: 0; }
+
+      /* ── PDF PREVIEW ── */
+      .pdf-section { background: var(--primary); padding: var(--spacing-lg) 0; }
+      .pdf-section .section-header { border-color: rgba(255,255,255,.3); }
+      .pdf-section .section-header h2,
+      .pdf-section .section-header p { color: var(--white); }
+      .pdf-section .section-header p { color: rgba(255,255,255,.6); }
+      .pdf-wrapper {
+        border-radius: var(--radius-md);
+        overflow: hidden;
+        box-shadow: var(--shadow-lg);
+      }
+      .pdf-wrapper iframe {
+        display: block;
+        width: 100%;
+        height: 700px;
+        border: none;
+        background: #fff;
+      }
+      .pdf-fallback {
+        display: none;
+        background: var(--white);
+        padding: var(--spacing-md);
+        border-radius: var(--radius-md);
+        text-align: center;
+      }
+
+      /* ── REPORT META ── */
+      .report-meta-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+        gap: var(--spacing-sm);
+        margin-bottom: var(--spacing-md);
+      }
+      .meta-card {
+        background: var(--white);
+        border: 1px solid #e0e4ea;
+        border-radius: var(--radius-md);
+        padding: var(--spacing-sm);
+      }
+      .meta-card .label { font-size: .75rem; text-transform: uppercase; letter-spacing: .06em; color: var(--gray); margin-bottom: .2rem; }
+      .meta-card .value { font-family: "Montserrat", sans-serif; font-weight: 600; font-size: .95rem; color: var(--primary); }
+
+      /* ── TABLES ── */
+      .table-wrap { overflow-x: auto; margin-bottom: var(--spacing-md); }
+      table { width: 100%; border-collapse: collapse; font-size: .9rem; background: var(--white); border-radius: var(--radius-md); overflow: hidden; box-shadow: var(--shadow-sm); }
+      thead { background: var(--primary); color: var(--white); }
+      thead th { padding: .7rem 1rem; text-align: left; font-family: "Montserrat", sans-serif; font-size: .82rem; text-transform: uppercase; letter-spacing: .04em; }
+      tbody tr:nth-child(even) { background: #f8f9fb; }
+      tbody td { padding: .65rem 1rem; border-bottom: 1px solid #eaeef2; vertical-align: middle; }
+      tbody tr:last-child td { border-bottom: none; }
+      .col-label { font-weight: 500; }
+
+      /* Status badges */
+      .badge {
+        display: inline-block;
+        padding: .2rem .65rem;
+        border-radius: 20px;
+        font-size: .78rem;
+        font-family: "Montserrat", sans-serif;
+        font-weight: 600;
+        white-space: nowrap;
+      }
+      .badge-ok      { background: #d5f5e3; color: #1e8449; }
+      .badge-warn    { background: #fdebd0; color: #b7770d; }
+      .badge-bad     { background: #fce4e4; color: #b03a2e; }
+      .badge-na      { background: #eaecee; color: #7f8c8d; }
+
+      /* Paint thickness highlight */
+      .high-paint { color: var(--error); font-weight: 600; }
+
+      /* ── IMAGES GRID ── */
+      .images-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: var(--spacing-sm); margin-bottom: var(--spacing-md); }
+      .img-card { border-radius: var(--radius-md); overflow: hidden; box-shadow: var(--shadow-sm); background: var(--white); }
+      .img-card img { display: block; width: 100%; height: 200px; object-fit: cover; }
+      .img-card .img-caption { padding: .5rem .75rem; font-size: .82rem; color: var(--gray); }
+
+      /* ── SUMMARY BOX ── */
+      .summary-box {
+        background: var(--light);
+        border-left: 4px solid var(--accent);
+        border-radius: 0 var(--radius-md) var(--radius-md) 0;
+        padding: var(--spacing-sm) var(--spacing-md);
+        margin-bottom: var(--spacing-md);
+        font-size: .95rem;
+      }
+      .summary-box.warn { border-left-color: var(--warning); background: #fef9f0; }
+      .summary-box.good { border-left-color: var(--success); background: #eafaf1; }
+
+      /* ── VERDICT ── */
+      .verdict-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: var(--spacing-sm); margin-bottom: var(--spacing-md); }
+      .verdict-card {
+        background: var(--white);
+        border: 1px solid #e0e4ea;
+        border-radius: var(--radius-md);
+        padding: var(--spacing-sm);
+      }
+      .verdict-card .v-question { font-size: .8rem; text-transform: uppercase; letter-spacing: .05em; color: var(--gray); margin-bottom: .3rem; }
+      .verdict-card .v-answer { font-family: "Montserrat", sans-serif; font-weight: 700; font-size: 1.1rem; margin-bottom: .4rem; }
+      .verdict-card .v-text { font-size: .88rem; line-height: 1.5; }
+      .verdict-card.good .v-answer { color: var(--success); }
+      .verdict-card.warn .v-answer { color: var(--warning); }
+      .verdict-card.bad  .v-answer { color: var(--error); }
+
+      /* ── FINAL VERDICT ── */
+      .final-verdict {
+        background: linear-gradient(135deg, var(--primary), #3d5166);
+        color: var(--white);
+        border-radius: var(--radius-lg);
+        padding: var(--spacing-md) var(--spacing-lg);
+        margin-top: var(--spacing-md);
+        text-align: center;
+      }
+      .final-verdict h3 { font-size: 1.5rem; margin-bottom: .75rem; }
+      .final-verdict p { max-width: 700px; margin: 0 auto; font-size: .95rem; line-height: 1.7; color: rgba(255,255,255,.85); }
+      .final-verdict .verdict-tag {
+        display: inline-block;
+        margin-bottom: var(--spacing-sm);
+        background: var(--warning);
+        color: var(--white);
+        padding: .35rem 1.2rem;
+        border-radius: 30px;
+        font-family: "Montserrat", sans-serif;
+        font-weight: 700;
+        font-size: .85rem;
+        text-transform: uppercase;
+        letter-spacing: .06em;
+      }
+
+      /* ── CTA ── */
+      .cta-section { background: var(--secondary); color: var(--white); padding: var(--spacing-lg) 0; text-align: center; }
+      .cta-section h2 { font-size: 1.8rem; margin-bottom: .5rem; }
+      .cta-section p { font-size: 1rem; margin-bottom: var(--spacing-md); opacity: .9; }
+      .btn {
+        display: inline-block;
+        padding: .8rem 1.8rem;
+        border-radius: var(--radius-md);
+        text-decoration: none;
+        font-family: "Montserrat", sans-serif;
+        font-weight: 600;
+        font-size: 1rem;
+        transition: all .25s;
+      }
+      .btn-white { background: var(--white); color: var(--secondary); }
+      .btn-white:hover { transform: translateY(-2px); box-shadow: var(--shadow-md); }
+      .btn-outline-white { background: transparent; color: var(--white); border: 2px solid var(--white); margin-left: var(--spacing-sm); }
+      .btn-outline-white:hover { background: var(--white); color: var(--secondary); transform: translateY(-2px); }
+
+      /* ── FOOTER ── */
+      .footer { background: var(--dark); color: var(--gray); text-align: center; padding: var(--spacing-sm) 0; font-size: .85rem; }
+      .footer a { color: var(--secondary); text-decoration: none; }
+
+      /* ── EXPLANATION TOOLTIPS ── */
+      .explain {
+        display: flex;
+        gap: .5rem;
+        background: #eef7ff;
+        border: 1px solid #bee3f8;
+        border-radius: var(--radius-md);
+        padding: .6rem var(--spacing-sm);
+        margin-bottom: var(--spacing-sm);
+        font-size: .85rem;
+        color: #2c5f8a;
+      }
+      .explain i { flex-shrink: 0; margin-top: .1rem; }
+
+      @media (max-width: 768px) {
+        .page-hero h1 { font-size: 1.5rem; }
+        .pdf-wrapper iframe { height: 450px; }
+        .btn-outline-white { margin-left: 0; margin-top: .5rem; display: block; }
+      }
+    </style>
+  </head>
+  <body>
+
+    <!-- HEADER -->
+    <header class="header">
+      <div class="container header-container">
+        <div class="logo">
+          <a href="index.html" style="text-decoration:none">
+            <p>AUTO<span class="highlight">_</span>MOTO<span class="highlight">_</span>EXPERT</p>
+          </a>
+        </div>
+        <nav>
+          <button class="mobile-menu-btn" aria-label="Menu">
+            <span></span><span></span><span></span>
+          </button>
+          <ul class="nav-links">
+            <li><a href="index.html#korzysci">Korzyści</a></li>
+            <li><a href="index.html#uslugi">Usługi</a></li>
+            <li><a href="index.html#pakiety">Pakiety</a></li>
+            <li><a href="raport-przykladowy.html" class="active">Przykładowy raport</a></li>
+            <li><a href="index.html#kontakt">Kontakt</a></li>
+          </ul>
+        </nav>
+        <div class="header-contact">
+          <a href="tel:+48503438806" class="phone-btn">
+            <i class="fas fa-phone"></i> +48 503 438 806
+          </a>
+        </div>
+      </div>
+    </header>
+
+    <!-- PAGE HERO -->
+    <header class="page-hero">
+      <div class="container">
+        <h1>Przykładowy raport przedzakupowy</h1>
+        <p>Sprawdź, co dostajesz po zleceniu inspekcji. Poniżej pełny raport z prawdziwej kontroli pojazdu krok po kroku.</p>
+        <span class="car-badge"><i class="fas fa-car"></i> Audi A4 B9 2.0 TFSI · 2018 · 95 500 km · Kielce, 27.10.2023</span>
+      </div>
+    </header>
+
+    <!-- ══════════════════════════════════════
+         1. SZABLON PDF
+    ═══════════════════════════════════════ -->
+    <div class="pdf-section">
+      <div class="container">
+        <div class="section-header">
+          <div class="section-icon"><i class="fas fa-file-pdf"></i></div>
+          <div>
+            <h2>Szablon raportu (PDF)</h2>
+            <p>Gotowy formularz, który wypełniam podczas każdej inspekcji. Możesz pobrać i zobaczyć jak jest zbudowany.</p>
+          </div>
+        </div>
+        <div class="pdf-wrapper">
+          <iframe
+            src="templata.pdf#toolbar=0&navpanes=0"
+            title="Szablon raportu przedzakupowego AUTO MOTO EXPERT"
+          ></iframe>
+        </div>
+      </div>
+    </div>
+
+    <!-- ══════════════════════════════════════
+         2. DANE RAPORTU
+    ═══════════════════════════════════════ -->
+    <section class="section">
+      <div class="container">
+        <div class="section-header">
+          <div class="section-icon"><i class="fas fa-clipboard-list"></i></div>
+          <div>
+            <h2>Informacje o raporcie</h2>
+            <p>Każda inspekcja otrzymuje unikalny numer, datę i jest przypisana do konkretnego zleceniodawcy.</p>
+          </div>
+        </div>
+        <div class="report-meta-grid">
+          <div class="meta-card"><div class="label">Typ raportu</div><div class="value">Przegląd przedzakupowy</div></div>
+          <div class="meta-card"><div class="label">Numer kontroli</div><div class="value">AE/2023/10/123</div></div>
+          <div class="meta-card"><div class="label">Data inspekcji</div><div class="value">27.10.2023</div></div>
+          <div class="meta-card"><div class="label">Ekspert</div><div class="value">Marcin Rubak</div></div>
+          <div class="meta-card"><div class="label">Dla klienta</div><div class="value">Potencjalny Nabywca</div></div>
+          <div class="meta-card"><div class="label">Lokalizacja</div><div class="value">Kielce, Świętokrzyskie</div></div>
+        </div>
+
+        <div class="section-header" style="margin-top: var(--spacing-md);">
+          <div class="section-icon" style="background: var(--accent)"><i class="fas fa-info-circle"></i></div>
+          <div>
+            <h2>Podstawowe informacje o pojeździe</h2>
+            <p>Weryfikuję dane rejestracyjne, VIN i ogólne parametry techniczne pojazdu na początku każdej inspekcji.</p>
+          </div>
+        </div>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>Cecha</th><th>Wartość</th></tr></thead>
+            <tbody>
+              <tr><td class="col-label">VIN</td><td><code>WAUZZZ8K9JA123456</code></td></tr>
+              <tr><td class="col-label">Marka / Model</td><td>Audi A4 (B9)</td></tr>
+              <tr><td class="col-label">Rok produkcji</td><td>2018</td></tr>
+              <tr><td class="col-label">Silnik</td><td>2.0 TFSI · 190 KM (140 kW) · Benzyna</td></tr>
+              <tr><td class="col-label">Skrzynia biegów</td><td>Automatyczna S-tronic</td></tr>
+              <tr><td class="col-label">Nadwozie / Kolor</td><td>Sedan · Czarny Metalik</td></tr>
+              <tr><td class="col-label">Przebieg</td><td>95 500 km</td></tr>
+              <tr><td class="col-label">Liczba drzwi</td><td>4</td></tr>
+              <tr><td class="col-label">Kraj pochodzenia</td><td>Niemcy</td></tr>
+              <tr><td class="col-label">Data I rejestracji</td><td>10.07.2018</td></tr>
+              <tr><td class="col-label">I rejestracja w Polsce</td><td>05.02.2021</td></tr>
+              <tr><td class="col-label">Ostatni przegląd</td><td>15.03.2023</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- ══════════════════════════════════════
+         3. KONTROLA ZEWNĘTRZNA
+    ═══════════════════════════════════════ -->
+    <section class="section" style="background: var(--white);">
+      <div class="container">
+        <div class="section-header">
+          <div class="section-icon"><i class="fas fa-paint-roller"></i></div>
+          <div>
+            <h2>Kontrola zewnętrzna – lakier i karoseria</h2>
+            <p>Mierzę grubość powłoki lakierowej na dziesiątkach punktów karoserii. Oryginalny lakier mieści się w zakresie 90–160 μm. Każda wartość powyżej sugeruje szpachlowanie lub przemalowanie – to sygnał ostrzegawczy przed ukrytą szkodą.</p>
+          </div>
+        </div>
+
+        <div class="explain">
+          <i class="fas fa-lightbulb"></i>
+          <span><strong>Jak czytać tabelę?</strong> Wartości w zakresie 90–160 μm (mikronów) oznaczają oryginalny lakier. Wartości powyżej 200 μm (oznaczone <span class="high-paint">na czerwono</span>) wskazują na naprawę blacharską lub lakierniczą w tym miejscu.</span>
+        </div>
+
+        <div class="images-grid">
+          <div class="img-card">
+            <img src="a4gora2.jpeg" alt="Pomiar lakieru – widok z góry, Audi A4" />
+            <p class="img-caption"><i class="fas fa-camera"></i> Lokalizacja 1 – dach i maska (widok z góry)</p>
+          </div>
+          <div class="img-card">
+            <img src="a4bok.jpeg" alt="Pomiar lakieru – bok prawy, Audi A4" />
+            <p class="img-caption"><i class="fas fa-camera"></i> Lokalizacja 2 – prawy bok pojazdu</p>
+          </div>
+          <div class="img-card">
+            <img src="a4bok2.jpeg" alt="Pomiar lakieru – bok lewy, Audi A4" />
+            <p class="img-caption"><i class="fas fa-camera"></i> Lokalizacja 3 – lewy bok pojazdu</p>
+          </div>
+        </div>
+
+        <h3 style="margin-bottom: var(--spacing-sm); font-size: 1rem; text-transform: uppercase; letter-spacing: .05em; color: var(--gray);">Lokalizacja 1 – maska i dach</h3>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>Punkt</th><th>Grubość lakieru (μm)</th><th>Szczelina (mm)</th><th>Ocena</th></tr></thead>
+            <tbody>
+              <tr><td>1</td><td>125</td><td>4.0</td><td><span class="badge badge-ok">OK</span></td></tr>
+              <tr><td>2</td><td>130</td><td>3.8</td><td><span class="badge badge-ok">OK</span></td></tr>
+              <tr><td>3</td><td>120</td><td>4.1</td><td><span class="badge badge-ok">OK</span></td></tr>
+              <tr><td>4</td><td>115</td><td>3.9</td><td><span class="badge badge-ok">OK</span></td></tr>
+              <tr><td>5</td><td>135</td><td>4.0</td><td><span class="badge badge-ok">OK</span></td></tr>
+              <tr><td>6 – maska, str. kierowcy</td><td class="high-paint">220</td><td>4.5</td><td><span class="badge badge-warn">Uwaga – naprawa</span></td></tr>
+              <tr><td>7</td><td>128</td><td>3.9</td><td><span class="badge badge-ok">OK</span></td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h3 style="margin: var(--spacing-md) 0 var(--spacing-sm); font-size: 1rem; text-transform: uppercase; letter-spacing: .05em; color: var(--gray);">Lokalizacja 2 – prawy bok</h3>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>Punkt</th><th>Grubość lakieru (μm)</th><th>Szczelina (mm)</th><th>Ocena</th></tr></thead>
+            <tbody>
+              <tr><td>8</td><td>130</td><td>4.2</td><td><span class="badge badge-ok">OK</span></td></tr>
+              <tr><td>9</td><td>122</td><td>4.0</td><td><span class="badge badge-ok">OK</span></td></tr>
+              <tr><td>10</td><td>118</td><td>4.1</td><td><span class="badge badge-ok">OK</span></td></tr>
+              <tr><td>11</td><td>133</td><td>3.8</td><td><span class="badge badge-ok">OK</span></td></tr>
+              <tr><td>12</td><td>127</td><td>4.0</td><td><span class="badge badge-ok">OK</span></td></tr>
+              <tr><td>13</td><td>125</td><td>4.2</td><td><span class="badge badge-ok">OK</span></td></tr>
+              <tr><td>14</td><td>130</td><td>4.1</td><td><span class="badge badge-ok">OK</span></td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h3 style="margin: var(--spacing-md) 0 var(--spacing-sm); font-size: 1rem; text-transform: uppercase; letter-spacing: .05em; color: var(--gray);">Lokalizacja 3 – lewy bok</h3>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>Punkt</th><th>Grubość lakieru (μm)</th><th>Szczelina (mm)</th><th>Ocena</th></tr></thead>
+            <tbody>
+              <tr><td>15</td><td>120</td><td>3.9</td><td><span class="badge badge-ok">OK</span></td></tr>
+              <tr><td>16</td><td>125</td><td>4.0</td><td><span class="badge badge-ok">OK</span></td></tr>
+              <tr><td>17</td><td>130</td><td>4.1</td><td><span class="badge badge-ok">OK</span></td></tr>
+              <tr><td>18</td><td>115</td><td>3.8</td><td><span class="badge badge-ok">OK</span></td></tr>
+              <tr><td>19</td><td>128</td><td>4.0</td><td><span class="badge badge-ok">OK</span></td></tr>
+              <tr><td>20</td><td>132</td><td>4.2</td><td><span class="badge badge-ok">OK</span></td></tr>
+              <tr><td>21</td><td>126</td><td>4.0</td><td><span class="badge badge-ok">OK</span></td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="summary-box warn">
+          <strong>Podsumowanie lakieru:</strong> Lakier w większości oryginalny, grubość powłoki w normie fabrycznej (115–135 μm).
+          Punkt 6 (maska, strona kierowcy) wykazuje podwyższoną grubość lakieru (220 μm) – prawdopodobna naprawa lakiernicza.
+          Szczeliny między elementami karoserii równe i symetryczne, z wyjątkiem okolic punktu 6 (4.5 mm). Zidentyfikowana usterka staje się argumentem do negocjacji ceny.
+        </div>
+
+        <!-- SZYBY -->
+        <div class="section-header" style="margin-top: var(--spacing-lg);">
+          <div class="section-icon" style="background: var(--accent)"><i class="fas fa-window-maximize"></i></div>
+          <div>
+            <h2>Kontrola szyb</h2>
+            <p>Weryfikuję czy wszystkie szyby są oryginalne (z rocznika pojazdu) lub zamienione – wymiana może oznaczać stłuczkę lub kradzież.</p>
+          </div>
+        </div>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>Pozycja</th><th>Producent</th><th>Numer</th><th>Kod daty</th><th>Ocena</th></tr></thead>
+            <tbody>
+              <tr><td>Szyba czołowa</td><td>Pilkington</td><td>AS1M1234DOT</td><td>03/18</td><td><span class="badge badge-ok">Oryginalna</span></td></tr>
+              <tr><td>Przednia pasażera</td><td>Saint-Gobain Sekurit</td><td>E2 43R-001120</td><td>02/18</td><td><span class="badge badge-ok">Oryginalna</span></td></tr>
+              <tr><td>Tylna pasażera</td><td>Saint-Gobain Sekurit</td><td>E2 43R-001120</td><td>02/18</td><td><span class="badge badge-ok">Oryginalna</span></td></tr>
+              <tr><td>Tylna</td><td>AGC Automotive</td><td>E6 43R-00048</td><td>01/18</td><td><span class="badge badge-ok">Oryginalna</span></td></tr>
+              <tr><td>Tylna kierowcy</td><td>Saint-Gobain Sekurit</td><td>E2 43R-001120</td><td>02/18</td><td><span class="badge badge-ok">Oryginalna</span></td></tr>
+              <tr><td>Przednia kierowcy</td><td>Saint-Gobain Sekurit</td><td>E2 43R-001120</td><td>02/18</td><td><span class="badge badge-ok">Oryginalna</span></td></tr>
+              <tr><td>Trójkątna prawa</td><td>AGC Automotive</td><td>E6 43R-00048</td><td>01/18</td><td><span class="badge badge-ok">Oryginalna</span></td></tr>
+              <tr><td>Trójkątna lewa</td><td>AGC Automotive</td><td>E6 43R-00048</td><td>01/18</td><td><span class="badge badge-ok">Oryginalna</span></td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="summary-box good">
+          <strong>Szyby:</strong> Wszystkie szyby oryginalne, z rocznika produkcji pojazdu. Brak śladów wymiany po kolizji.
+        </div>
+
+        <!-- OPONY -->
+        <div class="section-header" style="margin-top: var(--spacing-lg);">
+          <div class="section-icon" style="background: var(--accent)"><i class="fas fa-circle-notch"></i></div>
+          <div>
+            <h2>Kontrola ogumienia</h2>
+            <p>Sprawdzam producenta, rozmiar, głębokość bieżnika (minimum prawne to 1.6 mm) oraz datę produkcji opon. Opony starsze niż 5–6 lat warto wymienić niezależnie od bieżnika.</p>
+          </div>
+        </div>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr><th>Parametr</th><th>Przód lewy</th><th>Przód prawy</th><th>Tył lewy</th><th>Tył prawy</th></tr>
+            </thead>
+            <tbody>
+              <tr><td class="col-label">Producent</td><td>Michelin</td><td>Michelin</td><td>Continental</td><td>Continental</td></tr>
+              <tr><td class="col-label">Model</td><td>Pilot Sport 4</td><td>Pilot Sport 4</td><td>PremiumContact 6</td><td>PremiumContact 6</td></tr>
+              <tr><td class="col-label">Rozmiar</td><td>225/50 R17</td><td>225/50 R17</td><td>225/50 R17</td><td>225/50 R17</td></tr>
+              <tr><td class="col-label">Bieżnik zewnętrzny</td><td>5.5 mm</td><td>5.3 mm</td><td>6.0 mm</td><td>6.1 mm</td></tr>
+              <tr><td class="col-label">Bieżnik środek</td><td>5.8 mm</td><td>5.6 mm</td><td>6.2 mm</td><td>6.3 mm</td></tr>
+              <tr><td class="col-label">Bieżnik wewnętrzny</td><td>5.4 mm</td><td>5.2 mm</td><td>5.9 mm</td><td>6.0 mm</td></tr>
+              <tr><td class="col-label">Data produkcji</td><td>25/2021</td><td>25/2021</td><td>10/2022</td><td>10/2022</td></tr>
+              <tr><td class="col-label">Ocena</td><td><span class="badge badge-ok">Dobry</span></td><td><span class="badge badge-ok">Dobry</span></td><td><span class="badge badge-ok">Dobry</span></td><td><span class="badge badge-ok">Dobry</span></td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="summary-box good">
+          <strong>Opony:</strong> Opony przednie Michelin z 2021 roku, tylne Continental z 2022 roku. Wszystkie w dobrym stanie – głębokość bieżnika zdecydowanie powyżej minimum prawnego.
+        </div>
+      </div>
+    </section>
+
+    <!-- ══════════════════════════════════════
+         4. KONTROLA WEWNĘTRZNA
+    ═══════════════════════════════════════ -->
+    <section class="section">
+      <div class="container">
+        <div class="section-header">
+          <div class="section-icon"><i class="fas fa-couch"></i></div>
+          <div>
+            <h2>Kontrola wewnętrzna</h2>
+            <p>Sprawdzam stan tapicerki, wszystkich elementów elektrycznych, klimatyzacji oraz wyposażenia. Wytarty fotel przy małym przebiegu to sygnał przekręconego licznika.</p>
+          </div>
+        </div>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>Element</th><th>Stan</th><th>Uwagi</th></tr></thead>
+            <tbody>
+              <tr><td class="col-label">Tapicerka – zabrudzenia</td><td><span class="badge badge-warn">Do odświeżenia</span></td><td>Lekkie</td></tr>
+              <tr><td class="col-label">Tapicerka – przetarcia</td><td><span class="badge badge-warn">Drobne</span></td><td>Fotel kierowcy, boczek</td></tr>
+              <tr><td class="col-label">Tapicerka – pęknięcia</td><td><span class="badge badge-ok">Brak</span></td><td>–</td></tr>
+              <tr><td class="col-label">Plastiki progowe</td><td><span class="badge badge-warn">Drobne rysy</span></td><td>Normalne użytkowanie</td></tr>
+              <tr><td class="col-label">Oświetlenie (wszystkie)</td><td><span class="badge badge-ok">Sprawne</span></td><td>–</td></tr>
+              <tr><td class="col-label">Centralny zamek</td><td><span class="badge badge-ok">Sprawny</span></td><td>–</td></tr>
+              <tr><td class="col-label">Klimatyzacja</td><td><span class="badge badge-warn">Uwaga</span></td><td>Działa, ale słabo chłodzi – wymagany serwis</td></tr>
+              <tr><td class="col-label">El. składanie lusterek</td><td><span class="badge badge-warn">Uwaga</span></td><td>Prawe składa się z oporem</td></tr>
+              <tr><td class="col-label">Wycieraczki</td><td><span class="badge badge-warn">Do wymiany</span></td><td>Pióra zużyte</td></tr>
+              <tr><td class="col-label">El. szyby przód/tył</td><td><span class="badge badge-ok">Sprawne</span></td><td>–</td></tr>
+              <tr><td class="col-label">Podgrzewanie siedzeń</td><td><span class="badge badge-ok">Sprawne</span></td><td>–</td></tr>
+              <tr><td class="col-label">El. regulacja siedzeń</td><td><span class="badge badge-ok">Sprawna</span></td><td>–</td></tr>
+              <tr><td class="col-label">Kierownica wielofunkcyjna</td><td><span class="badge badge-ok">Sprawna</span></td><td>–</td></tr>
+              <tr><td class="col-label">Nawigacja / Multimedia</td><td><span class="badge badge-ok">Sprawne</span></td><td>–</td></tr>
+              <tr><td class="col-label">Szyberdach</td><td><span class="badge badge-na">Nie dotyczy</span></td><td>Brak w wyposażeniu</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="summary-box warn">
+          <strong>Podsumowanie wnętrza:</strong> Stan dobry, adekwatny do wieku i przebiegu. Klimatyzacja wymaga serwisu – obniżona wydajność chłodzenia. Prawe lusterko składa się z oporem. Pióra wycieraczek do wymiany. Przetarcie boczka fotela kierowcy zgodne ze wskazanym przebiegiem.
+        </div>
+      </div>
+    </section>
+
+    <!-- ══════════════════════════════════════
+         5. KOMORA SILNIKA I BAGAŻNIK
+    ═══════════════════════════════════════ -->
+    <section class="section" style="background: var(--white);">
+      <div class="container">
+        <div class="section-header">
+          <div class="section-icon"><i class="fas fa-oil-can"></i></div>
+          <div>
+            <h2>Komora silnika i bagażnik</h2>
+            <p>Sprawdzam poziomy płynów, wycieki, ślady napraw powypadkowych na elementach strukturalnych oraz stan koła zapasowego.</p>
+          </div>
+        </div>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>Element</th><th>Wynik</th><th>Uwagi</th></tr></thead>
+            <tbody>
+              <tr><td class="col-label">Poziom płynu chłodniczego</td><td><span class="badge badge-ok">OK</span></td><td>W normie</td></tr>
+              <tr><td class="col-label">Poziom oleju silnikowego</td><td><span class="badge badge-ok">OK</span></td><td>W normie, barwa prawidłowa</td></tr>
+              <tr><td class="col-label">Zawieszka wymiany oleju</td><td><span class="badge badge-ok">Obecna</span></td><td>Ostatnia wymiana 12.03.2023, przy 88 000 km</td></tr>
+              <tr><td class="col-label">Zawieszka wymiany rozrządu</td><td><span class="badge badge-warn">Brak</span></td><td>Brak informacji – wymaga wyjaśnienia</td></tr>
+              <tr><td class="col-label">Widoczne wycieki oleju</td><td><span class="badge badge-ok">Brak</span></td><td>Sucho</td></tr>
+              <tr><td class="col-label">Lakier komory silnika</td><td><span class="badge badge-ok">Oryginalny</span></td><td>Bez śladów napraw powypadkowych</td></tr>
+              <tr><td class="col-label">Lakier wnętrza bagażnika</td><td><span class="badge badge-ok">Oryginalny</span></td><td>Bez śladów napraw powypadkowych</td></tr>
+              <tr><td class="col-label">Koło zapasowe</td><td><span class="badge badge-ok">Kompletny</span></td><td>Zestaw naprawczy</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="summary-box good">
+          <strong>Podsumowanie:</strong> Komora silnika czysta, bez wycieków. Poziomy płynów w normie. Brak informacji o wymianie rozrządu – należy ustalić z właścicielem. Elementy strukturalne bez śladów szkód.
+        </div>
+      </div>
+    </section>
+
+    <!-- ══════════════════════════════════════
+         6. JAZDA PRÓBNA
+    ═══════════════════════════════════════ -->
+    <section class="section">
+      <div class="container">
+        <div class="section-header">
+          <div class="section-icon"><i class="fas fa-tachometer-alt"></i></div>
+          <div>
+            <h2>Jazda próbna</h2>
+            <p>Oceniam działanie skrzyni biegów, zawieszenia, hamulców, kierownicy i silnika w realnych warunkach drogowych – niektóre usterki ujawniają się dopiero podczas jazdy.</p>
+          </div>
+        </div>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>Element</th><th>Wynik</th><th>Uwagi</th></tr></thead>
+            <tbody>
+              <tr><td class="col-label">Uruchomienie silnika</td><td><span class="badge badge-ok">OK</span></td><td>Bezproblemowe</td></tr>
+              <tr><td class="col-label">Zmiana biegów</td><td><span class="badge badge-ok">OK</span></td><td>Płynna</td></tr>
+              <tr><td class="col-label">Utrzymanie toru jazdy</td><td><span class="badge badge-ok">OK</span></td><td>Pojazd stabilny</td></tr>
+              <tr><td class="col-label">Tempomat</td><td><span class="badge badge-ok">OK</span></td><td>Działa poprawnie</td></tr>
+              <tr><td class="col-label">Hamowanie</td><td><span class="badge badge-ok">OK</span></td><td>Skuteczne, bez wibracji</td></tr>
+              <tr><td class="col-label">Przyspieszenie</td><td><span class="badge badge-ok">OK</span></td><td>Dynamiczne, bez szarpnięć</td></tr>
+              <tr><td class="col-label">Luz na kierownicy</td><td><span class="badge badge-ok">Brak</span></td><td>Precyzyjne prowadzenie</td></tr>
+              <tr><td class="col-label">Zawieszenie</td><td><span class="badge badge-warn">Uwaga</span></td><td>Słyszalne stuki z przodu na nierównościach</td></tr>
+              <tr><td class="col-label">Hamulec ręczny</td><td><span class="badge badge-ok">OK</span></td><td>Działa poprawnie</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="summary-box warn">
+          <strong>Podsumowanie jazdy próbnej:</strong> Silnik i skrzynia biegów pracują poprawnie. Zauważono niepokojące stuki dochodzące z przedniego zawieszenia podczas pokonywania nierówności – potwierdzone następnie w warsztacie.
+        </div>
+      </div>
+    </section>
+
+    <!-- ══════════════════════════════════════
+         7. DIAGNOSTYKA NA PODJEŹDZIE / WARSZTACIE
+    ═══════════════════════════════════════ -->
+    <section class="section" style="background: var(--white);">
+      <div class="container">
+        <div class="section-header">
+          <div class="section-icon"><i class="fas fa-wrench"></i></div>
+          <div>
+            <h2>Kontrola podwozia (stacja diagnostyczna)</h2>
+            <p>Inspekcja pojazdu na kanale serwisowym lub ścieżce diagnostycznej – oceniam amortyzatory, wahacze, przeguby, korozję i hamulce z bezpośrednim dostępem do podwozia.</p>
+          </div>
+        </div>
+        <div class="explain">
+          <i class="fas fa-lightbulb"></i>
+          <span>Ta sekcja dostępna jest w pakiecie <strong>PREMIUM</strong>. Daje pełną ocenę podwozia, której nie można wykonać bez podjazdu pod pojazd.</span>
+        </div>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>Element</th><th>Wynik</th><th>Uwagi</th></tr></thead>
+            <tbody>
+              <tr><td class="col-label">Osłona silnika od spodu</td><td><span class="badge badge-ok">OK</span></td><td>Obecna, całość – lekko porysowana</td></tr>
+              <tr><td class="col-label">Wycieki silnika od spodu</td><td><span class="badge badge-ok">Brak</span></td><td>Sucho</td></tr>
+              <tr><td class="col-label">Przekładnia kierownicza</td><td><span class="badge badge-ok">OK</span></td><td>Sucha, bez luzów</td></tr>
+              <tr><td class="col-label">Wahacze i tuleje</td><td><span class="badge badge-warn">Uwaga</span></td><td>Luzy na przednich dolnych wahaczach</td></tr>
+              <tr><td class="col-label">Układ napędowy (przeguby, półosie)</td><td><span class="badge badge-ok">OK</span></td><td>Bez luzów, osłony całe</td></tr>
+              <tr><td class="col-label">Łożyska kół</td><td><span class="badge badge-ok">OK</span></td><td>Cicha praca</td></tr>
+              <tr><td class="col-label">Amortyzatory (wizualnie)</td><td><span class="badge badge-ok">OK</span></td><td>Suche, bez wycieków</td></tr>
+              <tr><td class="col-label">Tarcze hamulcowe</td><td><span class="badge badge-ok">Dobry</span></td><td>Grubość w normie, niewielki rant</td></tr>
+              <tr><td class="col-label">Klocki hamulcowe</td><td><span class="badge badge-warn">~60% zużycia</span></td><td>Do wymiany w perspektywie</td></tr>
+              <tr><td class="col-label">Przewody hamulcowe</td><td><span class="badge badge-ok">Dobry</span></td><td>Bez spękań i uszkodzeń</td></tr>
+              <tr><td class="col-label">Naprawy powypadkowe</td><td><span class="badge badge-ok">Brak</span></td><td>Elementy konstrukcyjne nienaruszone</td></tr>
+              <tr><td class="col-label">Korozja</td><td><span class="badge badge-warn">Drobna</span></td><td>Powierzchowna na układzie wydechowym – typowa dla wieku</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="section-header" style="margin-top: var(--spacing-lg);">
+          <div class="section-icon" style="background: var(--accent)"><i class="fas fa-laptop-code"></i></div>
+          <div>
+            <h2>Diagnostyka komputerowa</h2>
+            <p>Podłączam skaner diagnostyczny OBD i odczytuję błędy ze wszystkich sterowników pojazdu. Sprawdzam też faktyczny przebieg zapisany w ECU – to ochrona przed przekręconym licznikiem.</p>
+          </div>
+        </div>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>Co sprawdzono</th><th>Wynik</th><th>Uwagi</th></tr></thead>
+            <tbody>
+              <tr><td class="col-label">Przebieg z ECU</td><td><span class="badge badge-ok">95 515 km</span></td><td>Zgodny ze wskazaniem licznika</td></tr>
+              <tr><td class="col-label">Błędy aktywne</td><td><span class="badge badge-warn">P0420</span></td><td>Niska wydajność katalizatora (sporadyczny)</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="summary-box warn">
+          <strong>Diagnostyka:</strong> Przebieg potwierdzony komputerowo. Odczytano jeden sporadyczny błąd P0420 – potencjalny problem z katalizatorem. Wymaga obserwacji lub dalszej diagnostyki w serwisie ASO/niezależnym.
+        </div>
+      </div>
+    </section>
+
+    <!-- ══════════════════════════════════════
+         8. WERDYKT KOŃCOWY
+    ═══════════════════════════════════════ -->
+    <section class="section">
+      <div class="container">
+        <div class="section-header">
+          <div class="section-icon"><i class="fas fa-balance-scale"></i></div>
+          <div>
+            <h2>Werdykt końcowy eksperta</h2>
+            <p>Podsumowanie inspekcji – odpowiedź na trzy kluczowe pytania kupującego.</p>
+          </div>
+        </div>
+        <div class="verdict-grid">
+          <div class="verdict-card warn">
+            <div class="v-question">Czy sprzedający ujawnił wszystkie usterki?</div>
+            <div class="v-answer">Częściowo</div>
+            <div class="v-text">Sprzedający wspomniał o serwisie klimatyzacji i piórach wycieraczek. Nie ujawnił stuków w zawieszeniu, luzów na wahaczach, podwyższonej grubości lakieru na masce ani błędu katalizatora.</div>
+          </div>
+          <div class="verdict-card good">
+            <div class="v-question">Czy oględziny potwierdzają wskazany przebieg?</div>
+            <div class="v-answer">Tak</div>
+            <div class="v-text">Stan ogólny pojazdu, stopień zużycia wnętrza oraz odczyt przebiegu z komputera diagnostycznego (95 515 km) są spójne z deklarowanymi 95 500 km.</div>
+          </div>
+          <div class="verdict-card warn">
+            <div class="v-question">Czy polecam zakup?</div>
+            <div class="v-answer">Warunkowo</div>
+            <div class="v-text">Pojazd jest w dobrym stanie ogólnym z potwierdzonym przebiegiem. Konieczna naprawa zawieszenia, serwis klimatyzacji, obserwacja katalizatora. Stwierdzone usterki to gotowe argumenty do negocjacji ceny.</div>
+          </div>
+        </div>
+
+        <div class="final-verdict">
+          <span class="verdict-tag"><i class="fas fa-star"></i> Rekomendacja eksperta</span>
+          <h3>Audi A4 B9 2.0 TFSI – warto, ale negocjuj cenę</h3>
+          <p>Pojazd z 2018 roku, silnik benzynowy 2.0 TFSI, automatyczna S-tronic, przebieg 95 500 km (potwierdzony). Regularnie serwisowany. Stwierdzone usterki: luzy na przednich wahaczach (konieczna naprawa), serwis klimatyzacji, obserwacja błędu katalizatora P0420, naprawa lakiernicza maski. Łączny koszt napraw szacowany na ok. 1 500–2 500 zł – uwzględnij to w negocjacjach z ceną wywoławczą.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ══════════════════════════════════════
+         CTA
+    ═══════════════════════════════════════ -->
+    <section class="cta-section">
+      <div class="container">
+        <h2>Chcesz taki raport dla swojego auta?</h2>
+        <p>Dojazd do klienta do 200 km od Kielc. Pakiety od 400 PLN. Umów się dziś.</p>
+        <a href="tel:+48503438806" class="btn btn-white"><i class="fas fa-phone"></i> +48 503 438 806</a>
+        <a href="index.html#kontakt" class="btn btn-outline-white"><i class="fas fa-envelope"></i> Zamów online</a>
+      </div>
+    </section>
+
+    <footer class="footer">
+      <div class="container">
+        <p>&copy; 2026 <a href="index.html">AUTO_MOTO_EXPERT</a> · Profesjonalne sprawdzanie samochodów przed zakupem · Kielce i okolice</p>
+      </div>
+    </footer>
+    <script>
+      document.querySelector('.mobile-menu-btn').addEventListener('click', function () {
+        document.querySelector('.nav-links').classList.toggle('active');
+        this.classList.toggle('active');
+      });
+      document.querySelectorAll('.nav-links a').forEach(function (link) {
+        link.addEventListener('click', function () {
+          document.querySelector('.nav-links').classList.remove('active');
+          document.querySelector('.mobile-menu-btn').classList.remove('active');
+        });
+      });
+    </script>
+  </body>
+</html>
